@@ -6,29 +6,33 @@ namespace LessonsOne
 {
     public partial class Form1 : Form
     {
-        string File1 = @"C:\Users\AnatoliyGG\Desktop\1.cmd";
-
+        string file = @"C:\Users\AnatoliyGG\Desktop\1.cmd";
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        void button1_Click(object sender, EventArgs e)
         {
-            if (File.Exists(File1))
+            if (Look(file))
             {
-                Method("Файл есть");
+                label1.Text = Say(file, null);
             }
             else
             {
-                Method("Файла нет");
+                label1.Text = Say(file, "не");
             }
         }
-        
-        void Method(string line)
-        {
-            MessageBox.Show(line, "Уведомление", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
+        bool Look(string line)
+        {
+            return File.Exists(line) ? true : false;
         }
+
+        string Say(string line, string line2)
+        {
+            return $"Файл {line} {line2} существует";
+        }
+        
     }
 }
